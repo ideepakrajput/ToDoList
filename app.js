@@ -83,7 +83,7 @@ app.get("/:customListName", function (req, res) {
 app.post("/", function (req, res) {
     let itemName = req.body.newItem;
     const listName = _.trim(req.body.list);
-
+    
     const item = new Item({
         name: itemName
     });
