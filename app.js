@@ -129,6 +129,15 @@ app.post("/delete", function (req, res) {
         })
     }
 })
+app.post("/deleteList",function(req,res) {
+    const checkedItemId = req.body.checkbox;
+
+    List.findOneAndRemove(checkedItemId,function(err){
+        if (!err) {
+            res.redirect()
+        }
+    });
+})
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("Server is running on port 3000");
