@@ -1,27 +1,40 @@
 <%- include ('header') %>
 
-    <div class="box" id="heading">
-        <h1>
-            <%= listTitle %>
-        </h1>
-    </div>
+<div class="box" id="heading">
+  <h1>
+    <%= listTitle %>
+  </h1>
+</div>
+<div class="box list" id="heading">
+  <h1><a href="/">Today</a></h1>
+  <% foundLists.forEach(list => { %>
+  <% if (list.name != "Favicon.ico") { %>
+  <h1><a href="/<%= list.name %> "><%= list.name %></a></h1>
+  <% } %>
+  <% }) %>
 
-    <div class="box">
-        <% newListItems.forEach(item=> { %>
-            <form action="/delete" method="post">
-                <div class="item">
-                    <input name="checkbox" type="checkbox" value="<%=item._id%>" onChange="this.form.submit()"/>
-                    <p>
-                        <%= item.name %>
-                    </p>
-                </div>
-                <input type="hidden" name="listName" value="<%= listTitle %> ">
-            </form>
-            <% }) %>
-                <form class="item" action="/" method="post">
-                    <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required />
-                    <button type="submit" name="list" value="<%= listTitle %> ">+</button>
-                </form>
-    </div>
+  <form class="item" action="/addList" method="post">
+    <input type="text" name="newList" placeholder="New List" autocomplete="off" required>
+    <button type="submit">+</button>
+  </form>
+</div>
 
-    <%- include ('footer') %>
+<div class="box">
+  <% newListItems.forEach(item=> { %>
+  <form action="/delete" method="post">
+    <div class="item">
+      <input name="checkbox" type="checkbox" value="<%=item._id%>" onChange="this.form.submit()" />
+      <p>
+        <%= item.name %>
+      </p>
+    </div>
+    <input type="hidden" name="listName" value="<%= listTitle %> ">
+  </form>
+  <% }) %>
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required />
+    <button type="submit" name="list" value="<%= listTitle %> ">+</button>
+  </form>
+</div>
+
+<%- include ('footer') %>

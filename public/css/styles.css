@@ -18,6 +18,19 @@ h1 {
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
+.list{
+  margin: -107px 50px;
+  float: right;
+}
+
+.list h1{
+  padding: 0 10px;
+}
+.list a{
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+}
 #heading {
   background-color: #A683E3;
   text-align: center;
@@ -68,6 +81,20 @@ button {
   border-width: 0;
 }
 
+.list button{
+  background-color: #fff;
+  color: #A683E3;
+}
+
+.list ::placeholder{
+  color: #fff;
+  opacity: .7;
+}
+
+.list input[type="Text"]{
+  width: 150px;
+}
+
 input[type="text"] {
   text-align: center;
   height: 60px;
@@ -81,7 +108,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  box-shadow: inset 0 -3px 0 0 #A683E3;
+  box-shadow: inset 0 -3px 0 0 #fff;
 }
 
 ::placeholder {

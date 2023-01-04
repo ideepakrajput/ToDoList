@@ -55,7 +55,9 @@ app.get("/", function (req, res) {
             })
             res.redirect("/");
         } else {
-            res.render("list", { listTitle: "Today", newListItems: foundItems });
+            List.find(function (err, foundLists) {
+                res.render("list", { listTitle: "Today", newListItems: foundItems, foundLists: foundLists });
+            })
         }
     })
 })
@@ -72,9 +74,11 @@ app.get("/:customListName", function (req, res) {
                 });
 
                 list.save();
-                res.redirect("/" + customListName);
+                res.redirect("/" + _.lowerCase(customListName));
             } else {
-                res.render("list", { listTitle: foundList.name, newListItems: foundList.items })
+                List.find(function (err, foundLists) {
+                    res.render("list", { listTitle: foundList.name, newListItems: foundList.items, foundLists })
+                })
             }
         }
     })
@@ -99,6 +103,12 @@ app.post("/", function (req, res) {
         })
     }
 });
+
+app.post("/addList", function (req, res) {
+    const newList = req.body.newList;
+
+    res.redirect("/" + newList);
+})
 
 app.post("/delete", function (req, res) {
     const checkedItemId = req.body.checkbox;
