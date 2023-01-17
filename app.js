@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const { response } = require("express");
 
 const app = express();
 
@@ -129,12 +130,12 @@ app.post("/delete", function (req, res) {
         })
     }
 })
-app.post("/deleteList",function(req,res) {
+app.post("/deleteList", function (req, res) {
     const checkedItemId = req.body.checkbox;
 
-    List.findOneAndRemove(checkedItemId,function(err){
+    List.findOneAndRemove(checkedItemId, function (err) {
         if (!err) {
-            res.redirect()
+            res.redirect("/")
         }
     });
 })

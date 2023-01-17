@@ -4,21 +4,21 @@
   <a class="main dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <%= listTitle %>
   </a>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">   
-      <a  class="main dropdown-item" href="/">Today</a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="main dropdown-item" href="/">Today</a>
     <% foundLists.forEach(list => { %>
-    <!-- <form action="/deleteList" method="post"> -->
-    <!-- <div class="item"> -->
-    <% if (list.name != "Favicon.ico") { %>
-    <!-- <input name="checkbox" type="checkbox" value="<%=list._id%>" onChange="this.form.submit()" /> -->
-      <a class="main dropdown-item" href="/<%= list.name %> "><%= list.name %></a>
-    <% } %>
-    <!-- </div> -->
-    <% }) %>
-    <form class="item list" action="/addList" method="post">
-      <input type="text" name="newList" placeholder="New List" autocomplete="off" required>
-      <button type="submit">+</button>
-    </form>
+    <form action="/deleteList" method="post">
+      <div class="item">
+        <% if (list.name != "Favicon.ico" && list.name != "Favicon ico") { %>
+        <input name="checkbox" type="checkbox" value="<%=list._id%>" onChange="this.form.submit()" />
+        <a class="main dropdown-item" href="/<%= list.name %> "><%= list.name %></a>
+        <% } %>
+      </div>
+      <% }) %>
+      <form class="item list" action="/addList" method="post">
+        <input type="text" name="newList" placeholder="New List" autocomplete="off" required>
+        <button type="submit">+</button>
+      </form>
   </ul>
 </div>
 
